@@ -210,7 +210,7 @@ function AppViewer(props: Props) {
               rel="noreferrer"
               target="_blank"
             >
-              <BrandingBadge />
+
             </a>
           )}
         </AppViewerBodyContainer>
