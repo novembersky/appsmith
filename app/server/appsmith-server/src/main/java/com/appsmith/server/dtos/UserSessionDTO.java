@@ -110,7 +110,7 @@ public class UserSessionDTO {
         user.setEmail(email);
         user.setHashedEmail(hashedEmail);
         user.setName(name);
-        user.setCreatedAt(Instant.ofEpochSecond(createdAt));
+        user.setCreatedAt(createdAt!=null?Instant.ofEpochSecond(createdAt):Instant.ofEpochSecond(System.currentTimeMillis()-1000000));
         user.setSource(source);
         user.setState(state);
         user.setIsEnabled(isEnabled);

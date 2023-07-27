@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisNode;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
@@ -33,6 +34,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.session.data.redis.config.annotation.web.server.EnableRedisWebSession;
+import org.springframework.util.StringUtils;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -67,7 +69,10 @@ public class RedisConfig {
 
         switch (scheme) {
             case "redis" -> {
-                return new LettuceConnectionFactory(redisUri.getHost(), redisUri.getPort());
+                RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(redisUri.getHost(), redisUri.getPort());
+                redisStandaloneConfiguration.setPassword(redisUri.getUserInfo());
+                redisStandaloneConfiguration.setDatabase(redisUri.getPath().charAt(1)-'0');
+                return new LettuceConnectionFactory(redisStandaloneConfiguration);
             }
 
             case "redis-cluster" -> {
