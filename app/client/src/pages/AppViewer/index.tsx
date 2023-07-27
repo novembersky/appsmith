@@ -24,7 +24,6 @@ import { getThemeDetails, ThemeMode } from "selectors/themeSelectors";
 import { getSearchQuery } from "utils/helpers";
 import { getSelectedAppTheme } from "selectors/appThemingSelectors";
 import { useSelector } from "react-redux";
-import BrandingBadge from "./BrandingBadge";
 import { setAppViewHeaderHeight } from "actions/appViewActions";
 import { showPostCompletionMessage } from "selectors/onboardingSelectors";
 import { CANVAS_SELECTOR } from "constants/WidgetConstants";
