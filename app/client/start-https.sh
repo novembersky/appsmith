@@ -104,7 +104,7 @@ fi
 working_dir="$PWD/nginx"
 mkdir -pv "$working_dir"
 
-domain=dev.appsmith.com
+domain=dev.radar-ev.com
 
 key_file="$working_dir/$domain-key.pem"
 cert_file="$working_dir/$domain.pem"
